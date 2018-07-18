@@ -33,7 +33,7 @@ Here, `George` refers to *Chelonoidis abindgonii*. The index files for BLAST2 co
 First, a small script produces `.sh` files to automate the `blastp` runs between every pair of `fa` files:
 
 ```
-perl make_basts.pl [n=8]
+perl make_blasts.pl [n=8]
 ```
 This will create `n` files with the commands to run every `blastp` comparison (8 by default). Depending on the processing resources, they all may be run at the same time. An example of those commands is:
 

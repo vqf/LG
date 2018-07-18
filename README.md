@@ -65,4 +65,23 @@ Second, create the multiple alignments themselves.
 ```
 perl create_fastas.pl
 ```
-This will read `paired.json` and the initial `fa` files to create the multifasta files. These files will be gzipped and tarred in a file called `aligs.tar.gz`.
+This will read `paired.json` and the initial `fa` files to create the multifasta files. These files will be gzipped and tarred in a file called `aligs.tar.gz`. Multiple alignments can lack up to 3 species not including *C. abingdonii*. This behavior can be tweaked at line 97 of the script.
+### *A priori* families
+For copy-number variations, first get the lengths of each protein.
+```
+perl plen.pl
+```
+This will create one `json` file per organism with protein lengths (`{org}.length.json`).
+Second, set high-quality alignments.
+```
+cd grouping
+perl grouping.pl Human George
+perl grouping.pl Human Pelodiscus
+```
+The parameters for the alignment are set at lines 5 and 6 of the script. They describe how much of the longest protein must be aligned and the minimum percentage of identities it must present to be accepted. This will create two `json` files: `good_alignments_Human_George.json` and `good_alignments_Human_Pelodiscus.json`.
+Then, consolidate the results into families.
+```
+perl families.pl Human George
+perl families.pl Human Pelodiscus
+```
+This will create two `json` files: `families_Human_George.json` and `families_Human_Pelodiscus.json`.

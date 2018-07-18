@@ -55,6 +55,14 @@ perl orth_groups.pl
 This script will read the blast results and populate one table per organism with each protein and its best hits (as measured by the lowest `expect` values) in every other organism. It will output 18 `json` files (`Anolis.json`, `Chicken.json`, ...).
 
 ## Create orthology groups
-### Build table
-
-For multiple alignments
+### Multiple alignments
+First, create the consolidated table, where each protein in each organism is related with one protein in every other organism if their direct and reciprocal hits are the best ones.
+```
+perl build_table.pl
+```
+The script will output that table in a file called `paired.json`.
+Second, create the multiple alignments themselves. 
+```
+perl create_fastas.pl
+```
+This will read `paired.json` and the initial `fa` files to create the multifasta files. These files will be gzipped and tarred in a file called `aligs.tar.gz`.

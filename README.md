@@ -84,4 +84,8 @@ Then, consolidate the results into families.
 perl families.pl Human George
 perl families.pl Human Pelodiscus
 ```
-This will create two `json` files: `families_Human_George.json` and `families_Human_Pelodiscus.json`.
+This will create two `json` files: `families_Human_George.json` and `families_Human_Pelodiscus.json`. Finally, you can filter those families with an *ad hoc* filter. 
+```
+perl filter_fams.pl Human George Pelodiscus
+```
+It only checks that the second species has more copies in the family than the first species, and then shows the family members of the third species alongside. Manual filtering is required afterwards. Also, the human symbols are not official.
